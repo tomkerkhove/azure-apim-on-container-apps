@@ -1,0 +1,26 @@
+{
+	"branchPrefix": "renovate-",
+	"separateMajorMinor": false,
+	"labels": [
+		"dependencies"
+	],
+	"assignees": [
+		"@tomkerkhove"
+	],
+	"ignoreDeps": [],
+	"prHourlyLimit": 0,
+	"prConcurrentLimit": 0,
+  	"prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{footer}}}",
+	"extends": [
+		"config:base",
+		"default:pinDigestsDisabled"
+	],
+	"nuget": {
+		"enabled": true
+	},
+	"vulnerabilityAlerts": {
+		"labels": [
+			"security"
+		]
+	}
+}
