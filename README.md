@@ -38,3 +38,7 @@ transfer-encoding: chunked
 
 ["Honey Barbecue Flavored Bacon","Infamous Black Pepper Bacon","Italian Bacon","Raspberry Chipotle","Pumpkin Pie Spiced"]t
 ```
+
+## Limitations
+
+- Workloads are currently exposed with HTTP, instead of HTTPS
