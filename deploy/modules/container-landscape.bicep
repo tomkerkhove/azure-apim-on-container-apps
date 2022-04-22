@@ -23,6 +23,7 @@ resource environment 'Microsoft.App/managedEnvironments@2022-01-01-preview' = {
   }
 }
 
+var gatewayTokenSecretName = 'gateway-token'
 resource apiGatewayContainerApp 'Microsoft.App/containerApps@2022-01-01-preview' = {
   name: apiGatewayContainerAppName
   location: location
@@ -31,12 +32,17 @@ resource apiGatewayContainerApp 'Microsoft.App/containerApps@2022-01-01-preview'
     configuration: {
       ingress: {
         external: true
-        targetPort: 3000
+        targetPort: 8081
       }
       dapr: {
         enabled: false
       }
-      secrets: []
+      secrets: [
+        {
+          name: gatewayTokenSecretName
+          value: selfHostedGatewayToken
+        }
+      ]
     }
     template: {
       containers: [
@@ -54,7 +60,7 @@ resource apiGatewayContainerApp 'Microsoft.App/containerApps@2022-01-01-preview'
             }
             { 
               name: 'config.service.auth'
-              value: selfHostedGatewayToken
+              secretRef: gatewayTokenSecretName
             }
           ]
         }
@@ -99,7 +105,7 @@ resource baconApiContainerApp 'Microsoft.App/containerApps@2022-01-01-preview' =
           name: 'bacon-api'
           resources: {
             cpu: '0.5'
-            memory: '0.5Gi'
+            memory: '1.0Gi'
           }
           env: []
         }

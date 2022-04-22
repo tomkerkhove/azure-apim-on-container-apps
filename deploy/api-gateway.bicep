@@ -1,5 +1,5 @@
 param location string = resourceGroup().location
-param resourceNamePrefix string = 'apim-container-apps-sandbox'
+param resourceNamePrefix string = 'apim-container-apps'
 
 var apiManagementName = '${resourceNamePrefix}-api-management'
 var selfHostedGatewayName = 'api-gateway-on-container-apps'

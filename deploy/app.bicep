@@ -1,9 +1,8 @@
 param location string = resourceGroup().location
-param resourceNamePrefix string = 'apim-container-apps-sandbox'
+param resourceNamePrefix string = 'apim-container-apps'
 param apiManagementName string
 @secure()
 param selfHostedGatewayToken string
-
 
 // Infrastructure
 module infrastructure 'modules/infrastructure.bicep' = {
@@ -20,7 +19,7 @@ module containerLandscape 'modules/container-landscape.bicep' = {
   params: {
     location: location
     containerEnvironmentName: '${resourceNamePrefix}-container-landscape'
-    apiGatewayContainerAppName: '${resourceNamePrefix}-self-hosted-gateway'
+    apiGatewayContainerAppName: '${resourceNamePrefix}-api-gateway'
     baconApiContainerAppName: '${resourceNamePrefix}-bacon-api'
     apiManagementName: apiManagementName
     selfHostedGatewayToken: selfHostedGatewayToken
