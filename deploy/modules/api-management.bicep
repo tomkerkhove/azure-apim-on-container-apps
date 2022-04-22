@@ -2,7 +2,7 @@ param location string
 param apiManagementName string
 param selfHostedGatewayName string
 
-// Infrastructure
+// API Management Instance
 resource apiManagement 'Microsoft.ApiManagement/service@2021-08-01' = {
   name: apiManagementName
   location: location
@@ -16,6 +16,7 @@ resource apiManagement 'Microsoft.ApiManagement/service@2021-08-01' = {
   }
 }
 
+// Gateway
 resource selfHostedGateway 'Microsoft.ApiManagement/service/gateways@2021-08-01' = {
   name: selfHostedGatewayName
   parent: apiManagement
