@@ -118,3 +118,5 @@ resource baconApiContainerApp 'Microsoft.App/containerApps@2022-01-01-preview' =
     }
   }
 }
+
+output baconApiUrl string = baconApiContainerApp.properties.configuration.ingress.fqdn

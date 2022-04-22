@@ -1,6 +1,8 @@
 param location string = resourceGroup().location
 param resourceNamePrefix string = 'apim-container-apps'
 param apiManagementName string
+param selfHostedGatewayName string = 'api-gateway-on-container-apps'
+
 @secure()
 param selfHostedGatewayToken string
 
@@ -27,5 +29,19 @@ module containerLandscape 'modules/container-landscape.bicep' = {
   }
   dependsOn: [
     infrastructure
+  ]
+}
+
+// Container App integration in API gateway
+module containerIntegration 'modules/integrate-container-app-in-api-gateway.bicep' = {
+  name: 'container-integration'
+  params: {
+    apiManagementName: apiManagementName
+    selfHostedGatewayName: selfHostedGatewayName
+    baconApiUrl: containerLandscape.outputs.baconApiUrl
+  }
+  dependsOn: [
+    infrastructure
+    containerLandscape
   ]
 }
