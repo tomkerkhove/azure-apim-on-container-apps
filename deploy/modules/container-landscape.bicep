@@ -91,7 +91,7 @@ resource baconApiContainerApp 'Microsoft.App/containerApps@2022-01-01-preview' =
     configuration: {
       ingress: {
         external: false
-        targetPort: 3000
+        targetPort: 443
       }
       dapr: {
         enabled: false
