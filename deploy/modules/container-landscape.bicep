@@ -32,7 +32,8 @@ resource apiGatewayContainerApp 'Microsoft.App/containerApps@2022-01-01-preview'
     configuration: {
       ingress: {
         external: true
-        targetPort: 8081
+        targetPort: 8080
+        allowInsecure: true
       }
       dapr: {
         enabled: false
@@ -83,6 +84,7 @@ resource apiGatewayContainerApp 'Microsoft.App/containerApps@2022-01-01-preview'
   }
 }
 
+var targetPort = 80
 resource baconApiContainerApp 'Microsoft.App/containerApps@2022-01-01-preview' = {
   name: baconApiContainerAppName
   location: location
@@ -91,7 +93,8 @@ resource baconApiContainerApp 'Microsoft.App/containerApps@2022-01-01-preview' =
     configuration: {
       ingress: {
         external: false
-        targetPort: 443
+        targetPort: 80
+        allowInsecure: true
       }
       dapr: {
         enabled: false
@@ -107,7 +110,16 @@ resource baconApiContainerApp 'Microsoft.App/containerApps@2022-01-01-preview' =
             cpu: '0.5'
             memory: '1.0Gi'
           }
-          env: []
+          env: [
+            {
+              name: 'ASPNETCORE_ENVIRONMENT'
+              value: 'Production'
+            }
+            {
+              name: 'ASPNETCORE_URLS'
+              value: 'http://+:${targetPort}'
+            }
+          ]
         }
       ]
       scale: {

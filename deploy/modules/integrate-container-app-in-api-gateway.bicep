@@ -40,7 +40,7 @@ resource baconApiBackend 'Microsoft.ApiManagement/service/backends@2021-08-01' =
     title: 'Bacon API on Azure Container Apps'
     description: 'A running version of the Bacon API on Azure Container Apps which is only exposed inside the Container App Environment'
     protocol: 'http'
-    url: 'https://${baconApiUrl}'
+    url: 'http://${baconApiUrl}'
   }
 }
 
