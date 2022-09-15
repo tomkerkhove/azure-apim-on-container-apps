@@ -12,7 +12,7 @@ resource apiManagement 'Microsoft.ApiManagement/service@2021-08-01' = {
   }
   properties: {
     publisherName: 'Contoso'
-    publisherEmail: 'tomkerkhove@microsoft.com'
+    publisherEmail: '<email-address>'
   }
 }
 
