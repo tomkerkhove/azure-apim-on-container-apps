@@ -2,6 +2,8 @@
 
 Playground to run Azure API Management's self-hosted gateway on Azure Container Apps.
 
+> 📚 For official documentation, refer to this  [Microsoft Learn documentation page](https://learn.microsoft.com/azure/api-management/self-hosted-gateway-overview).
+
 ## Scenario 🗺️
 
 ![Scenario](./media/overview.png)
